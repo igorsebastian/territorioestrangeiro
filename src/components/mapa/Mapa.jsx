@@ -10,6 +10,7 @@ import './styles.css'
 //Ajusta icone default
 import iconDefault from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import MarcaCenso from './MarcaCenso';
 L.Marker.prototype.options.icon = L.icon({
   iconUrl: iconDefault,
   shadowUrl: iconShadow
@@ -35,7 +36,8 @@ function Mapa({ children }) {
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         className={tileClass} />
       <LocationMarker />
-      <MapClickHandler />
+      {/* <MapClickHandler /> */}
+      <MarcaCenso />
     </MapContainer>
   )
 }

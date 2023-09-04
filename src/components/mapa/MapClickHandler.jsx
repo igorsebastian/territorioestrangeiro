@@ -12,7 +12,8 @@ function MapClickHandler() {
         getQuadra(map.getBounds(), click).then(quadra => setQuadra(quadra))
     }, [click])
 
-    async function getQuadra(bounds, click) {
+    const getQuadra = async (bounds, click) => {
+        console.log("chamou async function")
         if (map.getZoom() < 16) {
             console.warn("Impossível marcar quadra a essa altura. Dê um zoom")
             return null
@@ -31,9 +32,9 @@ function MapClickHandler() {
         //Corrige coordenadas
         combinedLines.features.map(feature => feature.geometry.coordinates.map(points => points.forEach(coord => coord.reverse())))
         //Recorta somente linhas visiveis
-        //const clipedLines = bboxClip(combinedLines.features[0], bbox)
+        const clipedLines = bboxClip(combinedLines.features[0], bbox)
         //Transforma em poligonos
-        const polygons = polygonize(combinedLines)
+        const polygons = polygonize(clipedLines)
 
         const quadra = polygons.features.filter(function (polygon) {
             return booleanPointInPolygon(click, polygon)
@@ -53,6 +54,7 @@ function MapClickHandler() {
         <Polygon
             pathOptions={{ color: 'green', fillOpacity: .5, stroke: true }}
             positions={quadra.geometry.coordinates} >
+            {console.log("write quadra")}
         </Polygon >
     )
 };
