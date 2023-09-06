@@ -15,7 +15,7 @@
     ]
   },
   "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+    "rules": "/src/config/firestore.rules",
+    "indexes": "/src/config/firestore.indexes.json"
   }
 }

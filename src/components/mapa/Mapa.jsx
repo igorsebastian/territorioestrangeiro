@@ -1,7 +1,6 @@
 import React from 'react'
 import { useMap, MapContainer, LayersControl, TileLayer, useMapEvents } from 'react-leaflet'
 import LocationMarker from './Location';
-import MapClickHandler from "./MapClickHandler"
 import L from 'leaflet';
 
 import "leaflet/dist/leaflet.css";
@@ -10,7 +9,8 @@ import './styles.css'
 //Ajusta icone default
 import iconDefault from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import MarcaCenso from './MarcaCenso';
+import MarcarCenso from './MarcaCenso';
+import Censos from './Censos';
 L.Marker.prototype.options.icon = L.icon({
   iconUrl: iconDefault,
   shadowUrl: iconShadow
@@ -36,8 +36,8 @@ function Mapa({ children }) {
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         className={tileClass} />
       <LocationMarker />
-      {/* <MapClickHandler /> */}
-      <MarcaCenso />
+      <MarcarCenso />
+      <Censos />
     </MapContainer>
   )
 }
