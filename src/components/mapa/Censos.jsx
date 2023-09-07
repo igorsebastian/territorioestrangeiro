@@ -3,7 +3,7 @@ import { Polygon, Polyline, useMap, useMapEvents } from 'react-leaflet'
 import osmtogeojson from 'osmtogeojson'
 import * as turf from '@turf/turf'
 import * as geofire from "geofire-common"
-import { collection, addDoc, query, orderBy, startAt, endAt, getDocs } from "firebase/firestore";
+import { collection, addDoc, query, orderBy, startAt, endAt, getDocs, where } from "firebase/firestore";
 import { firestore } from "../../config/firebase.config"
 
 export default function Censos() {
@@ -39,6 +39,7 @@ export default function Censos() {
         for (const b of bounds) {
             const q = query(
                 collection(firestore, 'censos'),
+                where("congregacao", "==", "Espanhola"),
                 orderBy('geohash'),
                 startAt(b[0]),
                 endAt(b[1]));
